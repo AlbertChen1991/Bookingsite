@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from bookin import views
+import settings
 
+app_name = 'bookin'
 urlpatterns = [
+    url(r'^login$', views.login,name='login'),
+    url(r'^register$', views.register,name='register'),
+    url(r'^order$', views.order,name='order'),
+    url(r'^info$', views.info,name='info'),
+    url(r'^return_login$', views.relog,name='relog'),
     url(r'^admin/', admin.site.urls),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{ 'document_root': settings.STATIC_ROOT }),
 ]
